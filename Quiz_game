@@ -1,0 +1,67 @@
+print("Welcome To my Computer Quiz!")
+
+playing = input("Would you like to play? Y/N: ")
+score = 0
+if playing != "Y":
+    quit()
+else:
+    question_1 = input("What does CPU Stand for? ")
+
+if question_1 == "Central Processing Unit":
+    print("Correct!")
+    score = score + 1
+    question_2 = input("what is a GPU? ")
+else:
+    print("Incorrect")
+    score = score - 1
+    question_2 = input("what is a GPU? ")
+
+if question_2 == "Graphics Card":
+    print("Correct!")
+    score = score + 1
+    question_3 = input("What do You use to type on a computer? ")
+else:
+    print("Incorrect!")
+    score = score - 1
+    question_3 = input("What do You use to type on a computer? ")
+
+if question_3 == "Keyboard":
+    print("Correct!")
+    score = score + 1
+    question_4 = input("What do you use to click on things? ")
+else:
+    print("Incorrect!")
+    score = score - 1
+    question_4 = input("What do you use to click on things? ")
+
+if question_4 == "Mouse":
+    print("Correct!")
+    score = score + 1
+    question_5 = input("What is a motherboard? ")
+else:
+    print("Incorrect!")
+    score = score - 1
+    question_5 = input("What is a motherboard? ")
+
+if question_5 == "Backbone of the computer":
+    print("Correct!")
+    score = score + 1
+    print("Congradulations You have completed the quiz!")
+else:
+    print("Incorrect!")
+    score = score - 1
+    print("Congradulations You have completed the quiz!")
+
+
+percentage = score / 5 * 100
+
+if percentage >= 90:
+    print("You got an A!")
+elif percentage >= 80:
+    print("You got a B!")
+elif percentage >= 70:
+    print("You got a C!")
+elif percentage >= 60:
+    print("You got a D!")
+else:
+    print("You got an F!")
