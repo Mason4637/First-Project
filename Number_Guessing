@@ -1,0 +1,31 @@
+import random
+trys = 5
+top_range = input("Input a number: ")
+
+if top_range.isdigit():
+    top_range = int(top_range)
+
+    if top_range <= 0:
+        print('Please type a number larger than or equal to 0 next time: ')
+        quit()
+else:
+    print("Please type a number: ")
+    quit()
+
+random_number = random.randint(0,top_range)
+
+while True:
+    guess = input("Make a guess: ")
+    if guess.isdigit():
+        guess = int(guess)
+    else:
+        print("Please type a number: ")
+        quit()
+        continue
+
+    if guess == random_number:
+        print("You got it right!")
+        break
+    else:
+        print("You got it wrong!")
+        continue
