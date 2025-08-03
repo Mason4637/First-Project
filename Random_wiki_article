@@ -1,0 +1,54 @@
+import requests
+from bs4 import BeautifulSoup
+import random
+import webbrowser
+
+def random_article_url():
+    response = requests.get("https://en.wikipedia.org/wiki/Special:Random")
+    return response.url
+
+def article_links(url):
+    html = requests.get(url).text
+    soup = BeautifulSoup(html, 'html.parser')
+    links = soup.select('div#mw-content-text a[href^="/wiki/"]')
+    filtered_links = [
+        "https://en.wikipedia.org" + link['href']
+        for link in links
+        if ':' not in link['href'] and 'Main_Page' not in link['href']
+    ]
+    return filtered_links
+
+def rabbit_hole(start_url=None, depth=5):
+    url = start_url or random_article_url()
+    print("Starting rabbit hole...\n")
+    for i in range(depth):
+        print(f"[{i+1}] {url}")
+        webbrowser.open(url)
+        links = article_links(url)
+        if not links:
+            print("No further links found.")
+            break
+        url = random.choice(links)
+
+def main():
+    print("Welcome to Wikipedia Explorer!")
+    mode = input("Choose mode: (1) Random Article or (2) Rabbit Hole: ")
+
+    if mode == "1":
+        url = random_article_url()
+        print(f"Random article: {url}")
+        webbrowser.open(url)
+
+    elif mode == "2":
+        depth = input("How deep should the rabbit hole go? (e.g., 5): ")
+        try:
+            depth = int(depth)
+        except:
+            depth = 5
+        rabbit_hole(depth=depth)
+
+    else:
+        print("Invalid option.")
+
+if __name__ == "__main__":
+    main()
